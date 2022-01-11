@@ -14,7 +14,7 @@ class ReverseGeocodingAsyncTask(n:String, m:Int) : AsyncTask<String, Int, ArrayL
 
     override fun doInBackground(vararg params: String?) : ArrayList<Address>{
         val foundAddresses = ArrayList<Address>()
-        val geocoderNominatim = GeocoderNominatim("name=George Stavrinos,email=stavrinosgeo@gmail.com,app=destination_alarm")
+        val geocoderNominatim = GeocoderNominatim("name=Nishant Tekale ,email=nishanttekale7@gmail.com,app=destination_alarm")
         geocoderNominatim.setService("https://nominatim.openstreetmap.org/")
         try{
             foundAddresses.addAll(geocoderNominatim.getFromLocationName(name, maxRes))

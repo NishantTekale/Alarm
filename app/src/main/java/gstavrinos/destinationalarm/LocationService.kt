@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.content.Intent
 import android.os.IBinder
 import android.app.Service
+import android.content.ContentValues.TAG
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.net.Uri
+import android.util.Log
 
 class LocationService : Service() {
 
@@ -35,6 +38,11 @@ class LocationService : Service() {
                                                 map!!.overlays.remove(targetMarker)
                                                 check = false
                                                 map!!.invalidate()
+                                                val intent = Intent(Intent.ACTION_CALL)
+                                                intent.setData(Uri.parse("tel:"+9324397818))
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                                startActivity(intent)
+
                                                 val builder = AlertDialog.Builder(superDirty)
                                                 builder.setTitle("WAKE UP!")
                                                         .setMessage("Stop alarm?")
@@ -64,7 +72,7 @@ class LocationService : Service() {
                                     startForeground(16, notif)
                                 }
                                 catch (e: SecurityException) {
-                                    // TODO handle this!
+
                                 }
                             }
                         }

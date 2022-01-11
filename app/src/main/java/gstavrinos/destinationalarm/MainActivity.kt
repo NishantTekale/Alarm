@@ -36,6 +36,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 import kotlin.concurrent.thread
+import android.widget.ArrayAdapter as ArrayAdapter1
 
 class MainActivity : AppCompatActivity(){
     private var settings:SharedPreferences? = null
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity(){
     private var mConnection: ServiceConnection? = null
     private var audioManager: AudioManager? = null
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -272,6 +274,7 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
+    @SuppressLint("InflateParams")
     private fun showPopupSettings() {
 
         val popupView:View  = layoutInflater.inflate(R.layout.settings, null)
@@ -359,6 +362,7 @@ class MainActivity : AppCompatActivity(){
 
     }
 
+    @SuppressLint("InflateParams")
     private fun showPopupFavSave() {
 
         val popupView:View  = layoutInflater.inflate(R.layout.favourites_save, null)
@@ -413,6 +417,7 @@ class MainActivity : AppCompatActivity(){
 
     }
 
+    @SuppressLint("InflateParams")
     private fun showPopupFav() {
         if(!favLocs.isEmpty()){
             val popupView: View = layoutInflater.inflate(R.layout.favourites_list, null)
@@ -422,7 +427,8 @@ class MainActivity : AppCompatActivity(){
             popupWindow.isFocusable = true
 
             val favlist = popupView.findViewById<ListView>(R.id.fav_list)
-            val adapter = ArrayAdapter<String>(superDirty,android.R.layout.simple_list_item_1, favLocs)
+            val adapter =
+                ArrayAdapter1<String>(superDirty,android.R.layout.simple_list_item_1, favLocs)
             favlist.adapter = adapter
 
             favlist.setOnItemLongClickListener{ _, _, position, _ ->
@@ -470,6 +476,7 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
+    @SuppressLint("InflateParams")
     private fun showPopupAddressList() {
         val popupView: View = layoutInflater.inflate(R.layout.address_list, null)
 
@@ -480,7 +487,8 @@ class MainActivity : AppCompatActivity(){
         val addresses = ArrayList<Address>()
         val addressesString = ArrayList<String>()
         val addressList = popupView.findViewById<ListView>(R.id.address_list)
-        val adapter = ArrayAdapter<String>(superDirty,android.R.layout.simple_list_item_1, addressesString)
+        val adapter =
+            ArrayAdapter1<String>(superDirty,android.R.layout.simple_list_item_1, addressesString)
         addressList.adapter = adapter
 
         val searchButton = popupView.findViewById<ImageButton>(R.id.search_button)
